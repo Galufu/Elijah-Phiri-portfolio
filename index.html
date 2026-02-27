@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elijah Phiri · advanced portfolio</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Font: Inter + fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- CSS variables (light mode default) ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f5faff;
+      --text-primary: #1a2e3b;
+      --text-secondary: #2b5060;
+      --accent: #00778b;
+      --accent-light: #d2ecf2;
+      --card-bg: #f8fbfd;
+      --border-light: #e2f0f5;
+      --shadow: 0 20px 30px -10px rgba(0,55,70,0.1);
+      --navbar-bg: rgba(255,255,255,0.8);
+      --chat-bg: #ffffff;
+      --chat-border: #d0e4ed;
+      transition: background-color 0.3s, color 0.2s;
+    }
+
+    body.dark {
+      --bg-primary: #121f26;
+      --bg-secondary: #1c2d36;
+      --text-primary: #e6edf2;
+      --text-secondary: #b6d0da;
+      --accent: #4fc3d4;
+      --accent-light: #2d4d5a;
+      --card-bg: #1f333d;
+      --border-light: #2a4753;
+      --shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
+      --navbar-bg: rgba(18,31,38,0.9);
+      --chat-bg: #1c2d36;
+      --chat-border: #2a4753;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- glassmorphism navbar ---------- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .logo a {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--accent);
+    }
+    .logo span {
+      font-weight: 300;
+      color: var(--text-secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      font-weight: 500;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: 0.2s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .theme-toggle {
+      background: var(--accent-light);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+    .theme-toggle:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* ---------- animations / fade-up + slide-in ---------- */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .slide-in-left.appear {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* buttons, hero */
+    .hero {
+      padding: 60px 0 40px;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+    .hero h1 span {
+      font-weight: 300;
+      color: var(--text-secondary);
+      display: block;
+      font-size: 2.2rem;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin: 24px 0 32px;
+    }
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 14px 42px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      border: 2px solid var(--accent);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* section headings */
+    .section-overline {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .section-heading {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 40px;
+    }
+
+    /* cards grid */
+    .services-grid, .portfolio-grid, .blog-grid, .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin: 40px 0;
+    }
+    .service-card, .portfolio-card, .blog-card, .cert-card {
+      background: var(--card-bg);
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(4px);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover, .portfolio-card:hover, .blog-card:hover, .cert-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 40px -12px rgba(0,100,120,0.3);
+    }
+    .service-card i {
+      font-size: 2.6rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    /* portfolio cards with profile picture */
+    .portfolio-profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .profile-pic-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+    }
+    .portfolio-card .year {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .portfolio-card h4 {
+      font-size: 1.5rem;
+      margin: 8px 0 6px;
+    }
+    .portfolio-card .sub {
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .portfolio-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .more-info {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-light);
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    /* skills / about */
+    .about-skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 40px 0;
+    }
+    @media (max-width:700px){ .about-skills{ grid-template-columns:1fr; } }
+
+    .profile-main {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .profile-main img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+    }
+    .personal-highlight {
+      background: var(--accent-light);
+      padding: 20px;
+      border-radius: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .skill-badge {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 10px 20px;
+      border-radius: 40px;
+      display: inline-block;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    /* certificate card with icon/image */
+    .cert-card {
+      text-align: center;
+    }
+    .cert-card i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    /* blog enhancements */
+    .blog-card p {
+      margin-top: 8px;
+    }
+    .blog-card .read-more {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    /* chat bot */
+    .chatbot-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,100,120,0.5);
+      z-index: 200;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chatbot-button:hover {
+      transform: scale(1.1);
+    }
+    .chat-window {
+      position: fixed;
+      bottom: 110px;
+      right: 30px;
+      width: 360px;
+      max-width: 90vw;
+      background: var(--chat-bg);
+      border: 1px solid var(--chat-border);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      z-index: 199;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+    .chat-header {
+      background: var(--accent);
+      color: white;
+      padding: 18px 22px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+    .chat-header button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .chat-messages {
+      height: 280px;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .chat-msg {
+      padding: 10px 14px;
+      border-radius: 20px;
+      max-width: 80%;
+    }
+    .chat-msg.bot {
+      background: var(--accent-light);
+      color: var(--text-primary);
+      align-self: flex-start;
+    }
+    .chat-msg.user {
+      background: var(--accent);
+      color: white;
+      align-self: flex-end;
+    }
+    .chat-input-area {
+      display: flex;
+      border-top: 1px solid var(--border-light);
+    }
+    .chat-input-area input {
+      flex: 1;
+      padding: 16px;
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+    }
+    .chat-input-area button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0 20px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* footer */
+    footer {
+      text-align: center;
+      padding: 32px 0;
+      border-top: 1px solid var(--border-light);
+      margin-top: 40px;
+    }
+
+    /* download CV button */
+    .download-cv {
+      background: transparent;
+      border: 2px solid var(--accent);
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      margin-left: 16px;
+      transition: 0.2s;
+      display: inline-block;
+    }
+    .download-cv:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* contact links */
+    .contact-info a {
+      color: var(--text-primary);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--accent);
+    }
+    .contact-info a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- navbar with theme toggle & download CV -->
+    <nav class="navbar">
+      <div class="logo"><a href="#">Elijah <span>Phiri</span></a></div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div style="display: flex; gap: 12px;">
+        <a href="/documents/CV.pdf" class="download-cv" download><i class="fas fa-download"></i> CV</a>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      </div>
+    </nav>
+
+    <!-- hero with download CV button -->
+    <section class="hero fade-up">
+      <h1>I am Elijah Phiri <span>Sports · education · coaching</span></h1>
+      <p>Sports coordinator, PES teacher & coach with 8+ years experience in youth development, event management, and Olympic values. Based in Lusaka.</p>
+      <div class="hero-buttons">
+        <a href="#portfolio" class="btn-primary">Explore my work</a>
+        <a href="/documents/CV.pdf" class="btn-outline" download><i class="fas fa-file-pdf"></i> Download CV</a>
+      </div>
+    </section>
+
+    <!-- services -->
+    <section id="services" class="fade-up">
+      <div class="section-overline">SERVICES</div>
+      <h2 class="section-heading">What I offer</h2>
+      <div class="services-grid">
+        <div class="service-card"><i class="fas fa-futbol"></i><h3>Sports coordination</h3><p>University sports programs, league organization, athlete development (DMI, Fransalian).</p></div>
+        <div class="service-card"><i class="fas fa-chalkboard-teacher"></i><h3>PES teaching</h3><p>Physical education, inclusive coaching, Olympic values in schools.</p></div>
+        <div class="service-card"><i class="fas fa-trophy"></i><h3>Football coaching</h3><p>FAZ licensed coach – Zico Youth FC, Kwame Nkrumah Uni teams.</p></div>
+        <div class="service-card"><i class="fas fa-calendar-check"></i><h3>Events management</h3><p>Full-cycle sports events, fitness camps, charity galas.</p></div>
+      </div>
+    </section>
+
+    <!-- about + skills (bio expanded & animated) with profile picture -->
+    <div class="about-skills" id="about">
+      <div class="slide-in-left">
+        <div class="section-overline">ABOUT</div>
+        <h2 class="section-heading" style="margin-bottom:20px;">Driven by sport</h2>
+        <div class="profile-main">
+          <img src="/assets/images/picture.png" alt="Elijah Phiri">
+          <div>
+            <p>Born in Lusaka (1997), Elijah Phiri grew up playing football and representing his school in athletics. He holds a B.Ed. in Physical Education & Sports from Kwame Nkrumah University and is currently pursuing a Master's in Social Work (MSW) and Project Management (PMME). His passion lies in using sport as a tool for social change — he has led community fitness initiatives, coached underprivileged youth, and volunteered with the Olympic Values Education Program (OVEP) reaching over 1,000 children across Zambia.</p>
+          </div>
+        </div>
+        <p>Elijah is also a certified FAZ and IHF coach, and believes in lifelong learning, having earned diplomas in events management, sales, and food safety. When not on the pitch, he enjoys reading, swimming, and mentoring young coaches.</p>
+        <div class="personal-highlight">
+          <span><i class="fas fa-map-pin"></i> Lusaka</span>
+          <span><i class="fas fa-language"></i> English, Bemba, Nyanja</span>
+          <span><i class="fas fa-certificate"></i> FAZ / IHF license</span>
+          <span><i class="fas fa-calendar"></i> 21 Jan 1997</span>
+        </div>
+      </div>
+      <div id="skills" class="fade-up">
+        <div class="section-overline">SKILLS</div>
+        <h2 class="section-heading">Expertise</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <span class="skill-badge">Strategic conflict mgmt</span>
+          <span class="skill-badge">Leadership</span>
+          <span class="skill-badge">Planning & organizing</span>
+          <span class="skill-badge">Communication</span>
+          <span class="skill-badge">Fitness instruction</span>
+          <span class="skill-badge">Team player</span>
+          <span class="skill-badge">Customer focus</span>
+        </div>
+        <!-- qualifications with certificate pictures (icons) -->
+        <div style="margin-top: 30px;">
+          <h4 style="margin-bottom:16px;">Qualifications <i class="fas fa-certificate" style="color:var(--accent);"></i></h4>
+          <div class="cert-grid">
+            <div class="cert-card"><i class="fas fa-graduation-cap"></i> B.Ed. PES & Civic Ed</div>
+            <div class="cert-card"><i class="fas fa-calendar-alt"></i> Dip. Events Mgt</div>
+            <div class="cert-card"><i class="fas fa-chart-line"></i> Dip. Sales Mgt</div>
+            <div class="cert-card"><i class="fas fa-utensils"></i> Food Safety</div>
+            <div class="cert-card"><i class="fas fa-heartbeat"></i> HIV/AIDS cert</div>
+            <div class="cert-card"><i class="fas fa-chalkboard-teacher"></i> ToT cert</div>
+            <div class="cert-card"><i class="fas fa-olympic-games"></i> OVEP member</div>
+            <div class="cert-card"><i class="fas fa-futbol"></i> FAZ License</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- portfolio with actual profile images from provided paths -->
+    <section id="portfolio" class="fade-up">
+      <div class="section-overline">PORTFOLIO</div>
+      <h2 class="section-heading">Selected experience</h2>
+      <div class="portfolio-grid">
+        <!-- Sports Coordinator (DMI) – no specific image, keep icon or use default? using icon -->
+        <div class="portfolio-card">
+          <div class="portfolio-profile">
+            <i class="fas fa-user-tie profile-pic-img" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; background: var(--accent-light);"></i>
+            <div class="year">2025 – present</div>
+          </div>
+          <h4>Sports Coordinator</h4>
+          <div class="sub">DMI St Eugene University</div>
+          <p>Coordinate inter-university leagues, manage 5 sports teams, organize annual gala (300+ athletes).</p>
+          <div class="more-info"><i class="fas fa-map-marker-alt"></i> Lusaka · Full-time</div>
+        </div>
+        <!-- PES Teacher & Coordinator -> /assets/images/image.jpeg -->
+        <div class="portfolio-card">
+          <div class="portfolio-profile">
+            <img src="/assets/images/image.jpeg" alt="PES Teacher" class="profile-pic-img">
+            <div class="year">2022 – 2024</div>
+          </div>
+          <h4>PES Teacher & Coordinator</h4>
+          <div class="sub">Fransalian Mission</div>
+          <p>Physical education for 200+ students, organized mission sports tournaments and holiday camps.</p>
+          <div class="more-info"><i class="fas fa-trophy"></i> 3 inter-school events yearly</div>
+        </div>
+        <!-- Assistant Coach -> /assets/images/kids.jpeg -->
+        <div class="portfolio-card">
+          <div class="portfolio-profile">
+            <img src="/assets/images/kids.jpeg" alt="Assistant Coach" class="profile-pic-img">
+            <div class="year">2021 – 2024</div>
+          </div>
+          <h4>Assistant Coach</h4>
+          <div class="sub">Zico Youth FC</div>
+          <p>Youth development (U17, U20); tactical training, 2 regional cup appearances.</p>
+          <div class="more-info"><i class="fas fa-users"></i> 30+ young players mentored</div>
+        </div>
+        <!-- Football Coach -> /assets/images/dmi.jpeg (as per user) -->
+        <div class="portfolio-card">
+          <div class="portfolio-profile">
+            <img src="/assets/images/dmi.jpeg" alt="Football Coach" class="profile-pic-img">
+            <div class="year">2019 – 2022</div>
+          </div>
+          <h4>Football Coach</h4>
+          <div class="sub">Kwame Nkrumah University</div>
+          <p>Head coach university team, led to national university games quarter-finals.</p>
+          <div class="more-info"><i class="fas fa-clock"></i> 3 seasons · 40+ players trained</div>
+        </div>
+        <!-- Logistics Assistant (Yalelo) – no image, keep icon -->
+        <div class="portfolio-card">
+          <div class="portfolio-profile">
+            <i class="fas fa-box profile-pic-img" style="font-size: 2rem; display: flex; align-items: center; justify-content: center; background: var(--accent-light);"></i>
+            <div class="year">2017 – 2018</div>
+          </div>
+          <h4>Logistics Assistant</h4>
+          <div class="sub">Yalelo Zambia</div>
+          <p>Operations support, inventory management, sales logistics for aquaculture products.</p>
+          <div class="more-info"><i class="fas fa-chart-line"></i> Improved dispatch efficiency</div>
+        </div>
+        <!-- Marketing/Events Manager -> /assets/images/image.jpeg -->
+        <div class="portfolio-card">
+          <div class="portfolio-profile">
+            <img src="/assets/images/image.jpeg" alt="Marketing/Events Manager" class="profile-pic-img">
+            <div class="year">2020 – date</div>
+          </div>
+          <h4>Marketing/Events Manager</h4>
+          <div class="sub">Infinity Fitness Team</div>
+          <p>Organize fitness bootcamps, charity runs (200+ participants), social media campaigns.</p>
+          <div class="more-info"><i class="fas fa-calendar"></i> 8+ events yearly</div>
+        </div>
+        <!-- Member OVEP -> /assets/images/oydc.jpeg -->
+        <div class="portfolio-card">
+          <div class="portfolio-profile">
+            <img src="/assets/images/oydc.jpeg" alt="OVEP" class="profile-pic-img">
+            <div class="year">2018 – date</div>
+          </div>
+          <h4>Member OVEP</h4>
+          <div class="sub">Olympic Values Education Program</div>
+          <p>Promote olympic ideals in schools; workshops for 500+ children.</p>
+          <div class="more-info"><i class="fas fa-globe"></i> Nationwide outreach</div>
+        </div>
+        <!-- Events Coordinator (Breaking Barriers) -> /assets/images/nkruma.jpeg -->
+        <div class="portfolio-card">
+          <div class="portfolio-profile">
+            <img src="/assets/images/nkruma.jpeg" alt="Events Coordinator" class="profile-pic-img">
+            <div class="year">2023 – date</div>
+          </div>
+          <h4>Events Coordinator</h4>
+          <div class="sub">Breaking Barriers Foundation</div>
+          <p>Coordinate inclusion sports days, charity galas, and awareness campaigns.</p>
+          <div class="more-info"><i class="fas fa-flag"></i> 4 major events in 2024</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- blog with more info -->
+    <section id="blog" class="fade-up">
+      <div class="section-overline">BLOG</div>
+      <h2 class="section-heading">Latest thoughts</h2>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <span class="year">Feb 2025</span>
+          <h4>PE & mental health</h4>
+          <p>How school sports reduce anxiety — lessons from Lusaka. After introducing weekly mindfulness sessions in my PE classes, I've seen a 40% drop in student stress levels. Sport isn't just physical; it's emotional first aid.</p>
+          <a href="#" class="read-more">Read more →</a>
+        </div>
+        <div class="blog-card">
+          <span class="year">Dec 2024</span>
+          <h4>Olympic values in action</h4>
+          <p>Local youth embrace respect and friendship through OVEP. We organized a multi‑school athletics day where over 300 children competed in the spirit of fair play. The smiles said it all.</p>
+          <a href="#" class="read-more">Read more →</a>
+        </div>
+        <div class="blog-card">
+          <span class="year">Aug 2024</span>
+          <h4>Coaching diary</h4>
+          <p>Balancing fitness events & family: Infinity Fitness run recap. This year's charity run raised 50,000 kwacha for local orphanages. 250 runners showed that community and fitness go hand in hand.</p>
+          <a href="#" class="read-more">Read more →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact with clickable email & whatsapp -->
+    <section id="contact" class="fade-up">
+      <div class="section-overline">CONTACT</div>
+      <h2 class="section-heading">Let's connect</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+        <div class="contact-info" style="background: var(--card-bg); border-radius: 40px; padding: 32px;">
+          <div style="margin-bottom:20px;">
+            <i class="fas fa-phone-alt" style="color:var(--accent); width:30px;"></i>
+            <a href="tel:+260971241292">+260 971 241292</a> / <a href="tel:+260968506544">0968 506544</a>
+          </div>
+          <div style="margin-bottom:20px;">
+            <i class="fas fa-envelope" style="color:var(--accent);"></i>
+            <a href="mailto:emrephiri@gmail.com">emrephiri@gmail.com</a>
+          </div>
+          <div style="margin-bottom:20px;">
+            <i class="fab fa-whatsapp" style="color:var(--accent);"></i>
+            <a href="https://wa.me/260972411292" target="_blank">+260 972 411292 (WhatsApp)</a>
+          </div>
+          <div style="margin-bottom:20px;"><i class="fas fa-map-marker-alt" style="color:var(--accent);"></i> 27/14 Emmasdale, Lusaka</div>
+          <div><i class="fas fa-id-card" style="color:var(--accent);"></i> NRC: 411080/10/1</div>
+        </div>
+        <div>
+          <h3 style="margin-bottom:16px;">Referees</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Fr. Tembo Solomon</b><br><small>Vicar General (former)</small><br>+260 977 310008</div>
+            <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Mr. Sitali Mayaba</b><br><small>Lecturer, KNU</small><br>+260 976 318538</div>
+            <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Mr. Chiundira Paul</b><br><small>Dean DMI</small><br>+260 978 584663</div>
+            <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Rev. Sr. Dr. Zelipa Phiri</b><br><small>Katondwe Mission</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      </div>
+            <p class="copyright">
+                &copy; 2026 <a href="https://lazarous-galufu-portfolio.netlify.app" target="_blank">@GalufuTech</a>. All rights reserved. | 
+                Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for Elijah Phiri
+            </p>
+        </div>
+    </footer>
+  </div>
+
+  <!-- chat bot button & window -->
+  <button class="chatbot-button" id="chatOpenBtn"><i class="fas fa-robot"></i></button>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <span>🤖 Elijah AI Assistant</span>
+      <button id="chatCloseBtn">&times;</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">Hi! Ask me about Elijah's experience, qualifications, or contact.</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" placeholder="Ask something...">
+      <button id="chatSendBtn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // DARK / LIGHT MODE
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      const toggleIcon = themeToggle.querySelector('i');
+      function setTheme(theme) {
+        if (theme === 'dark') {
+          body.classList.add('dark');
+          toggleIcon.className = 'fas fa-sun';
+        } else {
+          body.classList.remove('dark');
+          toggleIcon.className = 'fas fa-moon';
+        }
+      }
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme) setTheme(storedTheme);
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+
+      themeToggle.addEventListener('click', () => {
+        body.classList.contains('dark') ? setTheme('light') : setTheme('dark');
+        localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+      });
+
+      // SCROLL ANIMATIONS (fade-up + slide-in-left)
+      const animatedElements = document.querySelectorAll('.fade-up, .slide-in-left');
+      const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
+      const appearOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, appearOptions);
+      animatedElements.forEach(el => appearOnScroll.observe(el));
+
+      // CHAT BOT
+      const chatBtn = document.getElementById('chatOpenBtn');
+      const chatWindow = document.getElementById('chatWindow');
+      const closeChat = document.getElementById('chatCloseBtn');
+      const sendBtn = document.getElementById('chatSendBtn');
+      const chatInput = document.getElementById('chatInput');
+      const messagesDiv = document.getElementById('chatMessages');
+
+      function toggleChat(show) {
+        chatWindow.style.display = show ? 'flex' : 'none';
+      }
+
+      chatBtn.addEventListener('click', () => toggleChat(true));
+      closeChat.addEventListener('click', () => toggleChat(false));
+
+      function addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('chat-msg', sender);
+        msgDiv.textContent = text;
+        messagesDiv.appendChild(msgDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+
+      function botResponse(userMsg) {
+        const q = userMsg.toLowerCase();
+        if (q.includes('experience') || q.includes('work')) return "Elijah has 8+ years in sports coordination: DMI St Eugene, Fransalian Mission, Zico Youth FC, and Kwame Nkrumah University.";
+        if (q.includes('qualification') || q.includes('degree')) return "He holds a B.Ed. in Physical Education & Sports, Diplomas in Events/Sales/Food Safety, FAZ & IHF licenses, and is pursuing a Master's in MSW/PMME.";
+        if (q.includes('contact') || q.includes('phone')) return "You can reach him at +260 971 241292 or emrephiri@gmail.com. WhatsApp also available: +260972411292";
+        if (q.includes('skill')) return "Key skills: conflict management, leadership, planning, communication, fitness instruction, team player.";
+        if (q.includes('referee') || q.includes('reference')) return "Referees: Fr. Tembo +260977310008, Mr. Sitali Mayaba +260976318538, Mr. Chiundira Paul +260978584663.";
+        return "I can answer about his experience, qualifications, skills, or contact. Try asking something!";
+      }
+
+      function handleUserMessage() {
+        const text = chatInput.value.trim();
+        if (text === '') return;
+        addMessage(text, 'user');
+        chatInput.value = '';
+        setTimeout(() => {
+          const reply = botResponse(text);
+          addMessage(reply, 'bot');
+        }, 500);
+      }
+
+      sendBtn.addEventListener('click', handleUserMessage);
+      chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleUserMessage(); });
+    })();
+  </script>
+</body>
+</html>
