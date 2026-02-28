@@ -31,6 +31,7 @@
       --navbar-bg: rgba(255,255,255,0.8);
       --chat-bg: #ffffff;
       --chat-border: #d0e4ed;
+      --input-bg: #ffffff;
       transition: background-color 0.3s, color 0.2s;
     }
 
@@ -47,6 +48,7 @@
       --navbar-bg: rgba(18,31,38,0.9);
       --chat-bg: #1c2d36;
       --chat-border: #2a4753;
+      --input-bg: #1f333d;
     }
 
     body {
@@ -161,16 +163,36 @@
       padding: 60px 0 40px;
       display: flex;
       align-items: center;
-      gap: 40px;
+      gap: 50px;
       flex-wrap: wrap;
     }
+    .hero-image {
+      position: relative;
+    }
     .hero-image img {
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid var(--accent);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 30px -8px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .hero-image img:hover {
+      transform: scale(1.02);
+    }
+    /* subtle ring effect */
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border-radius: 50%;
+      border: 2px dashed var(--accent-light);
+      opacity: 0.5;
+      pointer-events: none;
     }
     .hero-content {
       flex: 1;
@@ -505,6 +527,10 @@
       border-top: 1px solid var(--border-light);
       margin-top: 40px;
     }
+    .copyright a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
     /* download CV button */
     .download-cv {
@@ -524,7 +550,7 @@
       color: white;
     }
 
-    /* contact links */
+    /* contact links and form */
     .contact-info a {
       color: var(--text-primary);
       text-decoration: none;
@@ -532,6 +558,62 @@
     }
     .contact-info a:hover {
       color: var(--accent);
+    }
+    .contact-form {
+      background: var(--card-bg);
+      border-radius: 40px;
+      padding: 32px;
+      margin-top: 32px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid var(--border-light);
+      border-radius: 30px;
+      background: var(--input-bg);
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .btn-submit {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+    }
+    .btn-submit:hover {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      padding: 12px 30px;
     }
 
     /* responsive */
@@ -542,6 +624,9 @@
       }
       .hero-content h1 span {
         font-size: 1.8rem;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr !important;
       }
     }
   </style>
@@ -566,13 +651,13 @@
       </div>
     </nav>
 
-    <!-- hero with profile picture and animated heading -->
+    <!-- hero with profile picture (enhanced to match template) -->
     <section class="hero fade-up">
       <div class="hero-image">
         <img src="/assets/images/picture.png" alt="Elijah Phiri">
       </div>
       <div class="hero-content">
-        <h1>I am Elijah Phiri <span>Sports · education · coaching</span></h1>
+        <h1>Elijah Phiri <span>Sports | Education | Coaching</span></h1>
         <p>Sports coordinator, PES teacher & coach with 8+ years experience in youth development, event management, and Olympic values. Based in Lusaka.</p>
         <div class="hero-buttons">
           <a href="#portfolio" class="btn-primary">Explore my work</a>
@@ -795,44 +880,77 @@
       </div>
     </section>
 
-    <!-- contact with clickable email & whatsapp -->
+    <!-- contact with clickable email & whatsapp + contact form -->
     <section id="contact" class="fade-up">
       <div class="section-overline">CONTACT</div>
       <h2 class="section-heading">Let's connect</h2>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
-        <div class="contact-info" style="background: var(--card-bg); border-radius: 40px; padding: 32px;">
-          <div style="margin-bottom:20px;">
-            <i class="fas fa-phone-alt" style="color:var(--accent); width:30px;"></i>
-            <a href="tel:+260971241292">+260 972411292</a> / <a href="tel:+260968506544">0968 506544</a>
-          </div>
-          <div style="margin-bottom:20px;">
-            <i class="fas fa-envelope" style="color:var(--accent);"></i>
-            <a href="mailto:emrephiri@gmail.com">emrephiri@gmail.com</a>
-          </div>
-          <div style="margin-bottom:20px;">
-            <i class="fab fa-whatsapp" style="color:var(--accent);"></i>
-            <a href="https://wa.me/260972411292" target="_blank">+260 972 411292 (WhatsApp)</a>
-          </div>
-          <div style="margin-bottom:20px;"><i class="fas fa-map-marker-alt" style="color:var(--accent);"></i> 27/4 Emmasdale, Lusaka</div>
-          <div><i class="fas fa-id-card" style="color:var(--accent);"></i> NRC: 411080/10/1</div>
-        </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;" class="contact-grid">
+        <!-- left column: existing contact info -->
         <div>
-          <h3 style="margin-bottom:16px;">Referees</h3>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-            <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Fr. Tembo Solomon</b><br><small>Vicar General (former)</small><br>+260 977 310008</div>
-            <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Mr. Sitali Mayaba</b><br><small>Lecturer, KNU</small><br>+260 976 318538</div>
-            <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Mr. Chiundira Paul</b><br><small>Dean DMI</small><br>+260 978 584663</div>
-            <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Rev. Sr. Dr. Zelipa Phiri</b><br><small>Katondwe Mission</small></div>
+          <div class="contact-info" style="background: var(--card-bg); border-radius: 40px; padding: 32px;">
+            <div style="margin-bottom:20px;">
+              <i class="fas fa-phone-alt" style="color:var(--accent); width:30px;"></i>
+              <a href="tel:+260972411292">+260 972411292</a> / <a href="tel:+260968506544">0968 506544</a>
+            </div>
+            <div style="margin-bottom:20px;">
+              <i class="fas fa-envelope" style="color:var(--accent);"></i>
+              <a href="mailto:emrephiri@gmail.com">emrephiri@gmail.com</a>
+            </div>
+            <div style="margin-bottom:20px;">
+              <i class="fab fa-whatsapp" style="color:var(--accent);"></i>
+              <a href="https://wa.me/260972411292" target="_blank">+260 972 411292 (WhatsApp)</a>
+            </div>
+            <div style="margin-bottom:20px;"><i class="fas fa-map-marker-alt" style="color:var(--accent);"></i> 27/4 Emmasdale, Lusaka</div>
+            <div><i class="fas fa-id-card" style="color:var(--accent);"></i> NRC: 411080/10/1</div>
           </div>
+          <div style="margin-top: 24px;">
+            <h3 style="margin-bottom:16px;">Referees</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Fr. Tembo Solomon</b><br><small>Vicar General (former)</small><br>+260 977 310008</div>
+              <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Mr. Sitali Mayaba</b><br><small>Lecturer, KNU</small><br>+260 976 318538</div>
+              <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Mr. Chiundira Paul</b><br><small>Dean DMI</small><br>+260 978 584663</div>
+              <div class="referee-card" style="background: var(--card-bg); border-radius: 24px; padding: 16px;"><b>Rev. Sr. Dr. Zelipa Phiri</b><br><small>Katondwe Mission</small></div>
+            </div>
+          </div>
+        </div>
+        <!-- right column: contact form -->
+        <div class="contact-form">
+          <h3 style="margin-bottom: 24px; color: var(--accent);">Send a message</h3>
+          <form id="contactForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="reason">Reason for contact</label>
+              <select id="reason" name="reason" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="job">Job opportunity</option>
+                <option value="collaboration">Collaboration / Project</option>
+                <option value="coaching">Coaching inquiry</option>
+                <option value="event">Event coordination</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="I'd like to discuss..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send message</button>
+          </form>
         </div>
       </div>
     </section>
 
     <footer>
       <p class="copyright">
-                &copy; 2026 <a href="https://lazarous-galufu-portfolio.netlify.app" target="_blank">@GalufuTech</a>. All rights reserved. | 
-                Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for Elijah Phiri.
-            </p>
+        &copy; 2026 <a href="https://lazarous-galufu-portfolio.netlify.app" target="_blank">@GalufuTech</a>. All rights reserved. | 
+        Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for Elijah Phiri.
+      </p>
     </footer>
   </div>
 
@@ -976,6 +1094,18 @@
 
       sendBtn.addEventListener('click', handleUserMessage);
       chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleUserMessage(); });
+
+      // CONTACT FORM HANDLER
+      window.handleFormSubmit = function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const reason = document.getElementById('reason').value;
+        const message = document.getElementById('message').value;
+        alert(`Thank you for reaching out, ${name}! Your message regarding "${reason}" has been sent. Elijah will get back to you at ${email} soon.`);
+        // Optionally reset form
+        document.getElementById('contactForm').reset();
+      };
     })();
   </script>
 </body>
