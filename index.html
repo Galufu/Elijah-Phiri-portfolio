@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="google-site-verification" content="google58a86559d8a508f4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elijah Phiri · advanced portfolio</title>
+  <title>Elijah Phiri · Portfolio</title>
   <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Google Font: Inter + fallback -->
@@ -158,20 +159,35 @@
     /* buttons, hero */
     .hero {
       padding: 60px 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
     }
-    .hero h1 {
+    .hero-image img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .hero-content {
+      flex: 1;
+    }
+    .hero-content h1 {
       font-size: 3.8rem;
       font-weight: 700;
       line-height: 1.1;
       color: var(--text-primary);
     }
-    .hero h1 span {
+    .hero-content h1 span {
       font-weight: 300;
       color: var(--text-secondary);
       display: block;
       font-size: 2.2rem;
     }
-    .hero p {
+    .hero-content p {
       font-size: 1.3rem;
       color: var(--text-secondary);
       max-width: 650px;
@@ -517,6 +533,17 @@
     .contact-info a:hover {
       color: var(--accent);
     }
+
+    /* responsive */
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-content h1 span {
+        font-size: 1.8rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -539,20 +566,25 @@
       </div>
     </nav>
 
-    <!-- hero with animated heading -->
+    <!-- hero with profile picture and animated heading -->
     <section class="hero fade-up">
-      <h1>I am Elijah Phiri <span>Sports · education · coaching</span></h1>
-      <p>Sports coordinator, PES teacher & coach with 8+ years experience in youth development, event management, and Olympic values. Based in Lusaka.</p>
-      <div class="hero-buttons">
-        <a href="#portfolio" class="btn-primary">Explore my work</a>
-        <a href="/documents/CV.pdf" class="btn-outline" download><i class="fas fa-file-pdf"></i> Download CV</a>
+      <div class="hero-image">
+        <img src="/assets/images/picture.png" alt="Elijah Phiri">
+      </div>
+      <div class="hero-content">
+        <h1>I am Elijah Phiri <span>Sports · education · coaching</span></h1>
+        <p>Sports coordinator, PES teacher & coach with 8+ years experience in youth development, event management, and Olympic values. Based in Lusaka.</p>
+        <div class="hero-buttons">
+          <a href="#portfolio" class="btn-primary">Explore my work</a>
+          <a href="/documents/CV.pdf" class="btn-outline" download><i class="fas fa-file-pdf"></i> Download CV</a>
+        </div>
       </div>
     </section>
 
     <!-- services with enriched info -->
     <section id="services" class="fade-up">
       <div class="section-overline">SERVICES</div>
-      <h2 class="section-heading">What I offer</h2>
+      <h2 class="section-heading">What I offer / What I do</h2>
       <div class="services-grid">
         <div class="service-card">
           <i class="fas fa-futbol"></i>
@@ -585,11 +617,11 @@
     <div class="about-skills" id="about">
       <div class="slide-in-left">
         <div class="section-overline">ABOUT</div>
-        <h2 class="section-heading" style="margin-bottom:20px;">Driven by sport & academics</h2>
+        <h2 class="section-heading" style="margin-bottom:20px;">Driven by Education & Sports</h2>
         <div class="profile-main">
-          <img src="/assets/images/picture.jpeg" alt="Elijah Phiri">
+          <img src="/assets/images/picture.png" alt="Elijah Phiri">
           <div>
-            <p><strong>Elijah Phiri</strong> (b. 1997, Lusaka) is a dedicated sports educator and coach with a strong academic foundation. He holds a <strong>Bachelor of Education in Physical Education & Sports</strong> from Kwame Nkrumah University and is currently pursuing a <strong>Master's in Social Work (MSW)</strong> and <strong>Project Management (PMME)</strong>. His academic research focuses on the impact of school sports on youth mental health.</p>
+            <p><strong>Elijah Phiri</strong> I am a dedicated sports educator and coach with a strong academic foundation. I hold a <strong>Bachelor of Education in Physical Education & Sports</strong> from Kwame Nkrumah University and I am currently pursuing a <strong>Master's in Social Work (MSW)</strong> and <strong>Project Management (PMME)</strong>. My academic research focuses on the impact of school sports on youth mental health.</p>
           </div>
         </div>
         <p>Elijah's sporting journey began as a student-athlete, representing his province in football and athletics. He later transitioned into coaching and teaching, earning certifications from the <strong>Football Association of Zambia (FAZ)</strong> and the <strong>International Handball Federation (IHF)</strong>. As a volunteer with the <strong>Olympic Values Education Program (OVEP)</strong>, he has reached over 1,500 children across Zambia, promoting respect, friendship, and excellence through sport.</p>
@@ -771,7 +803,7 @@
         <div class="contact-info" style="background: var(--card-bg); border-radius: 40px; padding: 32px;">
           <div style="margin-bottom:20px;">
             <i class="fas fa-phone-alt" style="color:var(--accent); width:30px;"></i>
-            <a href="tel:+260971241292">+260 971 241292</a> / <a href="tel:+260968506544">0968 506544</a>
+            <a href="tel:+260971241292">+260 972411292</a> / <a href="tel:+260968506544">0968 506544</a>
           </div>
           <div style="margin-bottom:20px;">
             <i class="fas fa-envelope" style="color:var(--accent);"></i>
@@ -781,7 +813,7 @@
             <i class="fab fa-whatsapp" style="color:var(--accent);"></i>
             <a href="https://wa.me/260972411292" target="_blank">+260 972 411292 (WhatsApp)</a>
           </div>
-          <div style="margin-bottom:20px;"><i class="fas fa-map-marker-alt" style="color:var(--accent);"></i> 27/14 Emmasdale, Lusaka</div>
+          <div style="margin-bottom:20px;"><i class="fas fa-map-marker-alt" style="color:var(--accent);"></i> 27/4 Emmasdale, Lusaka</div>
           <div><i class="fas fa-id-card" style="color:var(--accent);"></i> NRC: 411080/10/1</div>
         </div>
         <div>
@@ -797,7 +829,10 @@
     </section>
 
     <footer>
-      <i class="far fa-copyright"></i> 2025 Elijah Phiri — advanced portfolio with AI assistant
+      <p class="copyright">
+                &copy; 2026 <a href="https://lazarous-galufu-portfolio.netlify.app" target="_blank">@GalufuTech</a>. All rights reserved. | 
+                Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for Elijah Phiri.
+            </p>
     </footer>
   </div>
 
@@ -809,7 +844,7 @@
       <button id="chatCloseBtn">&times;</button>
     </div>
     <div class="chat-messages" id="chatMessages">
-      <div class="chat-msg bot">Hi! Ask me about Elijah's experience, qualifications, or contact.</div>
+      <div class="chat-msg bot">Hi! I'm Elijah's virtual assistant. Ask me anything about his career, qualifications, experience, or contact details.</div>
     </div>
     <div class="chat-input-area">
       <input type="text" id="chatInput" placeholder="Ask something...">
@@ -862,7 +897,7 @@
         link.textContent = card.classList.contains('expanded') ? 'Show less' : 'Read more →';
       };
 
-      // CHAT BOT
+      // CHAT BOT - enhanced to answer any question about Elijah
       const chatBtn = document.getElementById('chatOpenBtn');
       const chatWindow = document.getElementById('chatWindow');
       const closeChat = document.getElementById('chatCloseBtn');
@@ -885,14 +920,47 @@
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       }
 
+      // Comprehensive knowledge base
+      const knowledgeBase = [
+        { keywords: ['name', 'who is', 'tell me about'], response: "I'm Elijah Phiri, a sports coordinator, educator, and coach from Lusaka, Zambia. I have over 8 years of experience in youth development, sports management, and Olympic values education." },
+        { keywords: ['experience', 'work', 'job', 'career'], response: "Elijah has worked as Sports Coordinator at DMI St Eugene University (2025–present), PES Teacher & Coordinator at Fransalian Mission (2022–2024), Assistant Coach at Zico Youth FC (2021–2024), Football Coach at Kwame Nkrumah University (2019–2022), and Logistics/Sales Assistant at Yalelo Zambia (2015–2018). He also volunteers with Infinity Fitness Team, OVEP, and Breaking Barriers Foundation." },
+        { keywords: ['education', 'degree', 'qualification', 'study'], response: "Elijah holds a B.Ed. in Physical Education & Sports from Kwame Nkrumah University. He is currently pursuing a Master's in Social Work (MSW) and Project Management (PMME). He also has diplomas in Events Management, Sales Management, Food Safety, and certificates in HIV/AIDS Awareness, Training of Trainers, and Supervision." },
+        { keywords: ['skill', 'competencies', 'expertise'], response: "Key skills include strategic conflict management, leadership, sports program design, event logistics, athlete mentoring, fitness assessment, budgeting, and public speaking. He's also a FAZ and IHF licensed coach." },
+        { keywords: ['contact', 'phone', 'email', 'reach'], response: "You can reach Elijah at +260 971 241292 or +260 968 506544, email emrephiri@gmail.com, or WhatsApp +260 972 411292. He's based in Lusaka at 27/14 Emmasdale." },
+        { keywords: ['referee', 'reference'], response: "Referees: Fr. Tembo Solomon (+260977310008), Mr. Sitali Mayaba (+260976318538), Mr. Chiundira Paul (+260978584663), and Rev. Sr. Dr. Zelipa Phiri (Katondwe Mission)." },
+        { keywords: ['certification', 'license', 'faz', 'ihf'], response: "Elijah holds a FAZ Coaching License and an International Handball Federation (IHF) License. He is also certified in HIV/AIDS Awareness, Training of Trainers, and Supervision." },
+        { keywords: ['hobby', 'interest', 'free time'], response: "Elijah enjoys listening to music, aerobic fitness, playing football, swimming, reading, and writing." },
+        { keywords: ['age', 'birth', 'born'], response: "Elijah was born on 21 January 1997 in Lusaka, Zambia." },
+        { keywords: ['nationality', 'country'], response: "He is Zambian." },
+        { keywords: ['language', 'speak'], response: "He speaks English, Bemba, and Nyanja." },
+        { keywords: ['marital', 'single'], response: "He is single." },
+        { keywords: ['sports coordinator', 'dmi'], response: "As Sports Coordinator at DMI St Eugene University (2025–present), he manages inter-university leagues, 5 sports teams, and an annual gala with 300+ athletes." },
+        { keywords: ['pes teacher', 'fransalian'], response: "At Fransalian Mission (2022–2024), he taught PE to 200+ students and organized mission sports tournaments and holiday camps." },
+        { keywords: ['assistant coach', 'zico'], response: "At Zico Youth FC (2021–2024), he focused on youth development (U17, U20), tactical training, and helped the team reach 2 regional cup finals." },
+        { keywords: ['football coach', 'kwame nkrumah'], response: "As head coach at Kwame Nkrumah University (2019–2022), he led the team to national university games quarter-finals." },
+        { keywords: ['logistics', 'yalelo'], response: "At Yalelo Zambia (2017–2018), he supported operations, inventory management, and sales logistics." },
+        { keywords: ['marketing', 'events manager', 'infinity fitness'], response: "Since 2020, he has been Marketing/Events Manager at Infinity Fitness Team, organizing bootcamps, charity runs, and social media campaigns." },
+        { keywords: ['ovep', 'olympic values'], response: "He has been a member of the Olympic Values Education Program since 2018, running workshops for over 500 children nationwide." },
+        { keywords: ['breaking barriers', 'events coordinator'], response: "Since 2023, he coordinates inclusion sports days, charity galas, and awareness campaigns for Breaking Barriers Foundation." },
+        { keywords: ['cv', 'resume'], response: "You can download his CV using the 'Download CV' button at the top or in the hero section." }
+      ];
+
       function botResponse(userMsg) {
-        const q = userMsg.toLowerCase();
-        if (q.includes('experience') || q.includes('work')) return "Elijah has 8+ years in sports coordination: DMI St Eugene, Fransalian Mission, Zico Youth FC, and Kwame Nkrumah University.";
-        if (q.includes('qualification') || q.includes('degree')) return "He holds a B.Ed. in Physical Education & Sports, Diplomas in Events/Sales/Food Safety, FAZ & IHF licenses, and is pursuing a Master's in MSW/PMME.";
-        if (q.includes('contact') || q.includes('phone')) return "You can reach him at +260 971 241292 or emrephiri@gmail.com. WhatsApp also available: +260972411292";
-        if (q.includes('skill')) return "Key skills: conflict management, leadership, planning, communication, fitness instruction, team player.";
-        if (q.includes('referee') || q.includes('reference')) return "Referees: Fr. Tembo +260977310008, Mr. Sitali Mayaba +260976318538, Mr. Chiundira Paul +260978584663.";
-        return "I can answer about his experience, qualifications, skills, or contact. Try asking something!";
+        const q = userMsg.toLowerCase().trim();
+        // exact match for common greetings
+        if (q.match(/^(hi|hello|hey|good morning|good afternoon)$/)) return "Hello! How can I help you learn more about Elijah?";
+        if (q.includes('thank')) return "You're welcome! Feel free to ask anything else.";
+
+        // search knowledge base
+        for (let item of knowledgeBase) {
+          for (let keyword of item.keywords) {
+            if (q.includes(keyword)) {
+              return item.response;
+            }
+          }
+        }
+        // if no match, provide a helpful fallback
+        return "I'm not sure about that. You can ask me about Elijah's experience, education, skills, contact, referees, certifications, or specific roles like 'sports coordinator' or 'coach'.";
       }
 
       function handleUserMessage() {
